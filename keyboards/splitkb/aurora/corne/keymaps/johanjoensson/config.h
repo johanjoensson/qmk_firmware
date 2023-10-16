@@ -17,6 +17,7 @@
 #pragma once
 
 #define TAPPING_TERM 200
+#define TAPPING_TERM_PER_KEY
 #define LEADER_TIMEOUT 300
 #define LED_CAPS_LOCK_PIN 24
 #define LED_PIN_ON_STATE 0
