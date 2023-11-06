@@ -19,19 +19,19 @@ Extend thumbs to access the different layers.
 
 * The left thumb finger gives access to the Numbers (or lower) layer
 * The right thumb finger gives access to the Symbols (or raise) layer
-* Extending both thumb fingers gives access to the Adjust layer
+* Extending both thumb fingers gives access to the Numpad layer
 
-### Layer 1: Lower
+### Layer 1: Numbers
 
 ![Layer 1](https://i.imgur.com/9h6ZRQLh.png)
 
-The Lower layer gives access to your number keys on the top row. It also exposes the arrow keys in the usual Vim-style layout.
+The Numbers layer gives access to your number keys on the top row. It also exposes the arrow keys in the usual Vim-style layout.
 
-### Layer 2: Raise
+### Layer 2: Symbols
 
 ![Layer 2](https://i.imgur.com/U1pf7pJh.png)
 
-The Raise layer gives access to the symbols. In addition to shifted number keys on the top row, the right hand also exposes the remaining symbol keys, both as shifted and non-shifted variants.
+The Symbols layer gives access to the symbols. In addition to shifted number keys on the top row, the right hand also exposes the remaining symbol keys, both as shifted and non-shifted variants.
 
 ### Layer 3: Numpad
 
