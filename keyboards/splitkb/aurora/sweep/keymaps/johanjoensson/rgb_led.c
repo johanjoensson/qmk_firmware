@@ -67,6 +67,10 @@ void housekeeping_task_user(void) {
             rgblight_sethsv_range(HSV_PURPLE, 0, 6);
             rgblight_sethsv_range(HSV_PURPLE, 23, 29);
             break;
+        case UCIS:
+            rgblight_sethsv_range(HSV_TURQUOISE, 0, 6);
+            rgblight_sethsv_range(HSV_TURQUOISE, 23, 29);
+            break;
     }
 }
 

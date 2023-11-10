@@ -1,4 +1,5 @@
 const ucis_symbol_t ucis_symbol_table[] = UCIS_TABLE(
+                /*
     UCIS_SYM("Alpha", 0x09B1),                // Α
     UCIS_SYM("Beta", 0x0392),                 // Β
     UCIS_SYM("Gamma", 0x0393),                // Γ
@@ -22,6 +23,7 @@ const ucis_symbol_t ucis_symbol_table[] = UCIS_TABLE(
     UCIS_SYM("Chi", 0x03A7),                   // Χ
     UCIS_SYM("Phi", 0x03A8),                   // Ψ
     UCIS_SYM("Omega", 0x03A9),                 // Ω
+                                               // */
     UCIS_SYM("alpha", 0x03B1),                // α
     UCIS_SYM("beta", 0x03B2),                 // β
     UCIS_SYM("gamma", 0x03B3),                // γ
@@ -50,10 +52,10 @@ const ucis_symbol_t ucis_symbol_table[] = UCIS_TABLE(
     UCIS_SYM("rofl", 0x1F923),                // 🤣
     UCIS_SYM("cuba", 0x1F1E8, 0x1F1FA),       // 🇨🇺
     UCIS_SYM("look", 0x0CA0, 0x005F, 0x0CA0),  // ಠ_ಠ
-    UCIS_SYM("snek", 0x1F40D)                // 🐍
+    UCIS_SYM("snek", 0x1F40D),                // 🐍
+    UCIS_SYM("zz", 0x1F40D)                // 🐍
 );
 
 void ucis_start_user(void)
 { 
-  unicode_input_start();
 }
