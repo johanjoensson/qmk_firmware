@@ -26,52 +26,53 @@ void keyboard_pre_init_user(void) {
   writePinHigh(24);
 }
 
+const rgblight_segment_t PROGMEM capslock_indicator[] = RGBLIGHT_LAYER_SEGMENTS(
+    {22, 1, HSV_RED},       // Light 1 LED, starting with LED 22
+    {44, 1, HSV_RED}       // Light 1 LED, starting with LED 45
+);
+// Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
+const rgblight_segment_t PROGMEM base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 6, HSV_BLACK},
+    {23, 6, HSV_BLACK}
+);
+const rgblight_segment_t PROGMEM nav_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 6, HSV_GREEN},
+    {23, 6, HSV_GREEN}
+);
+const rgblight_segment_t PROGMEM numpad_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 6, HSV_RED},
+    {23, 6, HSV_BLACK}
+);
+const rgblight_segment_t PROGMEM symbols_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 6, HSV_BLACK},
+    {23, 6, HSV_RED}
+);
+const rgblight_segment_t PROGMEM ucis_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 6, HSV_TURQUOISE},
+    {23, 6, HSV_TURQUOISE}
+);
+
+const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+                [_BASE] = base_layer,
+                [_NAV] = nav_layer,
+                [_UCIS] = ucis_layer,
+                [_SYMBOLS] = symbols_layer,
+                [_NUMPAD] = numpad_layer,
+                [7] = capslock_indicator
+);
+
 void keyboard_post_init_user(void) {
     // Initialize RGB to static black
     rgblight_enable_noeeprom();
     rgblight_sethsv_noeeprom(HSV_BLACK);
     rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+    rgblight_layers = rgb_layers;
+
 }
 
-
-// This seems to be run on both halves of the keyboard, 
-// so it works the way I want it to, with rgblight_sethsv_range
-// ONLY used predefined colors!
-void housekeeping_task_user(void) {
-    switch (get_highest_layer(layer_state | default_layer_state)) {
-        case BASE:
-            rgblight_sethsv_range(HSV_BLACK, 0, 6);
-            rgblight_sethsv_range(HSV_BLACK, 23, 29);
-            break;
-        case CONTROL:
-            rgblight_sethsv_range(HSV_GREEN, 0, 6);
-            rgblight_sethsv_range(HSV_GREEN, 23, 29);
-            break;
-        case NUMBERS:
-            rgblight_sethsv_range(HSV_RED, 0, 6);
-            rgblight_sethsv_range(HSV_BLACK, 23, 29);
-            break;
-        case SYMBOLS:
-            rgblight_sethsv_range(HSV_BLACK, 0, 6);
-            rgblight_sethsv_range(HSV_RED, 23, 29);
-            break;
-        case NUMPAD:
-            rgblight_sethsv_range(HSV_BLUE, 0, 6);
-            rgblight_sethsv_range(HSV_BLUE, 23, 29);
-            break;
-        case FUNCTION:
-            rgblight_sethsv_range(HSV_GREEN, 0, 6);
-            rgblight_sethsv_range(HSV_BLACK, 23, 29);
-            break;
-        case RGBS:
-            rgblight_sethsv_range(HSV_PURPLE, 0, 6);
-            rgblight_sethsv_range(HSV_PURPLE, 23, 29);
-            break;
-        case UCIS:
-            rgblight_sethsv_range(HSV_TURQUOISE, 0, 6);
-            rgblight_sethsv_range(HSV_TURQUOISE, 23, 29);
-            break;
-    }
+bool led_update_user(led_t led_state) {
+    rgblight_set_layer_state(7, led_state.caps_lock);
+    return true;
 }
 
 

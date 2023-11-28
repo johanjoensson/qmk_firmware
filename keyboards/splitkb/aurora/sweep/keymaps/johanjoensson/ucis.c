@@ -1,29 +1,28 @@
 const ucis_symbol_t ucis_symbol_table[] = UCIS_TABLE(
-                /*
-    UCIS_SYM("Alpha", 0x09B1),                // Α
-    UCIS_SYM("Beta", 0x0392),                 // Β
-    UCIS_SYM("Gamma", 0x0393),                // Γ
-    UCIS_SYM("Delta", 0x0394),                // Δ
-    UCIS_SYM("Epsilon", 0x0395),              // Ε
-    UCIS_SYM("Zeta", 0x0396),                 // Ζ
-    UCIS_SYM("Eta", 0x0397),                  // Η
-    UCIS_SYM("Theta", 0x0398),                // Θ
-    UCIS_SYM("Iota", 0x0399),                  // Ι
-    UCIS_SYM("Kappa", 0x039A),                 // Κ
-    UCIS_SYM("Lambda", 0x039B),                // Λ
-    UCIS_SYM("Mu", 0x039C),                    // Μ
-    UCIS_SYM("Nu", 0x039D),                    // Ν
-    UCIS_SYM("Omicron", 0x039F),               // Ο
-    UCIS_SYM("Pi", 0x03A0),                    // Π
-    UCIS_SYM("Rho", 0x03A1),                   // Ρ
-    UCIS_SYM("Sigma", 0x03A3),                 // Σ
-    UCIS_SYM("Tau", 0x03A4),                   // Τ
-    UCIS_SYM("Upsilon", 0x03A5),               // Υ
-    UCIS_SYM("Psi", 0x03A6),                   // Φ
-    UCIS_SYM("Chi", 0x03A7),                   // Χ
-    UCIS_SYM("Phi", 0x03A8),                   // Ψ
-    UCIS_SYM("Omega", 0x03A9),                 // Ω
-                                               // */
+    UCIS_SYM("aalpha", 0x0391),                // Α
+    UCIS_SYM("bbeta", 0x0392),                 // Β
+    UCIS_SYM("ggamma", 0x0393),                // Γ
+    UCIS_SYM("ddelta", 0x0394),                // Δ
+    UCIS_SYM("eepsilon", 0x0395),              // Ε
+    UCIS_SYM("zzeta", 0x0396),                 // Ζ
+    UCIS_SYM("eeta", 0x0397),                  // Η
+    UCIS_SYM("ttheta", 0x0398),                // Θ
+    UCIS_SYM("iiota", 0x0399),                  // Ι
+    UCIS_SYM("kkappa", 0x039A),                 // Κ
+    UCIS_SYM("llambda", 0x039B),                // Λ
+    UCIS_SYM("mmu", 0x039C),                    // Μ
+    UCIS_SYM("nnu", 0x039D),                    // Ν
+    UCIS_SYM("xxi", 0x039E),                    // Ξ
+    UCIS_SYM("oomicron", 0x039F),               // Ο
+    UCIS_SYM("ppi", 0x03A0),                    // Π
+    UCIS_SYM("rrho", 0x03A1),                   // Ρ
+    UCIS_SYM("ssigma", 0x03A3),                 // Σ
+    UCIS_SYM("ttau", 0x03A4),                   // Τ
+    UCIS_SYM("uupsilon", 0x03A5),               // Υ
+    UCIS_SYM("ppsi", 0x03A6),                   // Φ
+    UCIS_SYM("cchi", 0x03A7),                   // Χ
+    UCIS_SYM("pphi", 0x03A8),                   // Ψ
+    UCIS_SYM("oomega", 0x03A9),                 // Ω
     UCIS_SYM("alpha", 0x03B1),                // α
     UCIS_SYM("beta", 0x03B2),                 // β
     UCIS_SYM("gamma", 0x03B3),                // γ
@@ -37,10 +36,11 @@ const ucis_symbol_t ucis_symbol_table[] = UCIS_TABLE(
     UCIS_SYM("lambda", 0x03BB),                // λ
     UCIS_SYM("mu", 0x03BC),                    // μ
     UCIS_SYM("nu", 0x03BD),                    // ν
+    UCIS_SYM("xi", 0x03BE),                    // ξ
     UCIS_SYM("omicron", 0x03BF),               // ο
     UCIS_SYM("pi", 0x03C0),                    // π
     UCIS_SYM("rho", 0x03C1),                   // ρ
-    UCIS_SYM("sigma'", 0x03C2),                // ς
+    UCIS_SYM("sigma1", 0x03C2),                // ς
     UCIS_SYM("sigma", 0x03C3),                 // σ
     UCIS_SYM("tau", 0x03C4),                   // τ
     UCIS_SYM("upsilon", 0x03C5),               // υ
@@ -53,7 +53,7 @@ const ucis_symbol_t ucis_symbol_table[] = UCIS_TABLE(
     UCIS_SYM("cuba", 0x1F1E8, 0x1F1FA),       // 🇨🇺
     UCIS_SYM("look", 0x0CA0, 0x005F, 0x0CA0),  // ಠ_ಠ
     UCIS_SYM("snek", 0x1F40D),                // 🐍
-    UCIS_SYM("zz", 0x1F40D)                // 🐍
+    UCIS_SYM("snek2", 0x1F40D)                // 🐍
 );
 
 void ucis_start_user(void)
