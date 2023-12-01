@@ -25,7 +25,6 @@ enum layers {
 };
 
 // #ifdef OLED_ENABLE
-#if 0
 // NOTE: Most of the OLED code was originally written by Soundmonster for the Corne,
 // and has been copied directly from `crkbd/soundmonster/keymap.c`
 
@@ -33,6 +32,7 @@ oled_rotation_t oled_init_kb(oled_rotation_t rotation) {
     return OLED_ROTATION_270;
 }
 
+#if 0
 void render_space(void) {
     oled_write_P(PSTR("     "), false);
 }
