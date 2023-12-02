@@ -1,4 +1,30 @@
+CONVERT_TO = liatris
+LTO_ENABLE = yes
+
 OLED_ENABLE = yes
-ENCODER_ENABLE = yes       # Enables the use of one or more encoders
-RGB_MATRIX_ENABLE = no     # Disable keyboard RGB matrix, as it is enabled by default on rev3
-RGBLIGHT_ENABLE = yes      # Enable keyboard RGB underglow
+ENCODER_ENABLE = no       # Enables the use of one or more encoders
+LED_MATRIX_ENABLE = no
+RGB_MATRIX_ENABLE = no
+RGBLIGHT_ENABLE = no
+BACKLIGHT_ENABLE = no
+
+DYNAMIC_TAPPING_TERM_ENABLE = yes
+TAP_DANCE_ENABLE = yes
+LEADER_ENABLE = yes
+COMBO_ENABLE = yes
+
+UNICODE_COMMON = yes
+UCIS_ENABLE = yes
+
+CAPS_WORD_ENABLE = yes
+
+CONSOLE_ENABLE = no
+COMMAND_ENABLE = no
+MOUSEKEY_ENABLE = no
+EXTRAKEY_ENABLE = no
+SPACE_CADET_ENABLE = no
+GRAVE_ESC_ENABLE = no
+MAGIC_ENABLE = no
+AUDIO_ENABLE = no
+MUSIC_ENABLE = no
+AVR_USE_MINIMAL_PRINTF = yes

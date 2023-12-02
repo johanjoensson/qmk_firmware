@@ -1,5 +1,10 @@
+#pragma once
+#include QMK_KEYBOARD_H
+#include "johanjoensson.h"
+
 enum combos {
   WE_TAB,
+  ER_STAB,
   SD_ESC,
   UI_BSP,
   JK_ENT,
@@ -9,15 +14,17 @@ enum combos {
 };
 
 const uint16_t PROGMEM we_combo[] = {KC_W, KC_E, COMBO_END};
-const uint16_t PROGMEM sd_combo[] = {MT(MOD_LALT, KC_S), KC_D, COMBO_END};
+const uint16_t PROGMEM er_combo[] = {KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM sd_combo[] = {LALT_T(KC_S), KC_D, COMBO_END};
 const uint16_t PROGMEM ui_combo[] = {KC_U, KC_I, COMBO_END};
-const uint16_t PROGMEM jk_combo[] = {MT(MOD_LCTL, KC_J), KC_K, COMBO_END};
+const uint16_t PROGMEM jk_combo[] = {LCTL_T(KC_J), KC_K, COMBO_END};
 const uint16_t PROGMEM io_combo[] = {KC_I, KC_O, COMBO_END};
-const uint16_t PROGMEM kl_combo[] = {KC_K, MT(MOD_LALT, KC_L), COMBO_END};
+const uint16_t PROGMEM kl_combo[] = {KC_K, LALT_T(KC_L), COMBO_END};
 const uint16_t PROGMEM commdot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 
 combo_t key_combos[] = {
   [WE_TAB] = COMBO(we_combo, KC_TAB),
+  [ER_STAB] = COMBO(er_combo, LSFT(KC_TAB)),
 
 #ifdef TAP_DANCE_ENABLE
   [SD_ESC] = COMBO(sd_combo, ESC_CAP),

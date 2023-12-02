@@ -1,3 +1,6 @@
+#include QMK_KEYBOARD_H
+#include "johanjoensson.h"
+
 const ucis_symbol_t ucis_symbol_table[] = UCIS_TABLE(
     UCIS_SYM("aalpha", 0x0391),                // Α
     UCIS_SYM("bbeta", 0x0392),                 // Β
