@@ -37,7 +37,7 @@ void tap_dance_tap_hold_reset(tap_dance_state_t *state, void *user_data) {
 }
 
 
-void dance_fn_numers(tap_dance_state_t *state, void *user_data) {
+void dance_fn_numbers(tap_dance_state_t *state, void *user_data) {
     switch(state->count){
         case 1:
             break;

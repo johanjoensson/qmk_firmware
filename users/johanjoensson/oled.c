@@ -16,17 +16,26 @@ void render_space(void) {
 void render_animation(void)
 {
 #include "animation.c"
-        static const uint32_t frames_len = sizeof(FRAMES)/sizeof(FRAMES[0]);
-        static uint32_t anim_timer = 0;
         static uint8_t current_frame = 0;
+        static uint8_t animation_index = 0;
+        if (current_frame == 0){
+            animation_index = rand() % 2;
+        }
+        static uint32_t frames_len = sizeof(FRAME_INDICES[animation_index])/sizeof(FRAME_INDICES[animation_index][0]);
+        static uint32_t anim_timer = 0;
 
-        if (timer_elapsed32(anim_timer) > ANIM_FRAME_TIME) {
-                oled_set_cursor(0, 0);
+        if (timer_elapsed32(anim_timer) / 2 > ANIM_FRAME_TIME) {
+                if (animation_index == 0){
+                    oled_set_cursor(0, 12);
+                } else {
+                    oled_set_cursor(0, 0);
+                }
                 anim_timer = timer_read32();
-                const char *frame = FRAMES[current_frame];
+                const char *frame = FRAMES[FRAME_INDICES[animation_index][current_frame]];
                 current_frame = (current_frame + 1) % frames_len;
                 oled_write_raw_P(frame, sizeof(FRAMES[0]));
         }
+    oled_set_cursor(0, 16);
 }
 
 void render_large_logo(void)
@@ -183,9 +192,28 @@ void render_mod_status_ctrl_shift(uint8_t modifiers) {
     }
 }
 
-void render_logo(void) {
+void render_logo(void)
+{
 #include "logo_small.c"
+    oled_set_cursor(0, 6);
     oled_write_raw_P(logo_small, sizeof(logo_small));
+    oled_set_cursor(0, 10);
+}
+
+void render_small_animation(void)
+{
+#include "kirby_small.c"
+    static const uint32_t frames_len = sizeof(FRAME_INDICES)/sizeof(FRAME_INDICES[0]);
+    static uint32_t anim_timer = 0;
+    static uint8_t current_frame = 0;
+
+    if (timer_elapsed32(anim_timer) > ANIM_FRAME_TIME) {
+            oled_set_cursor(0, 0);
+            anim_timer = timer_read32();
+            const char *frame = FRAMES[FRAME_INDICES[current_frame]];
+            current_frame = (current_frame + 1) % frames_len;
+            oled_write_raw_P(frame, sizeof(FRAMES[0]));
+    }
     oled_set_cursor(0, 4);
 }
 
@@ -246,7 +274,7 @@ bool oled_task_kb(void) {
         render_kb_LED_state();
 #endif
 #ifdef OLED_DISPLAY_128X32
-        render_logo();
+        render_small_animation();
         render_logo_text();
         render_space();
         render_mod_status_gui_alt(get_mods()|get_oneshot_mods());
@@ -258,6 +286,7 @@ bool oled_task_kb(void) {
 #endif
     } else {
 #ifdef RIGHT_ANIMATION
+         render_logo();
          render_animation();
 #else
          render_large_logo();

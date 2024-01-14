@@ -49,7 +49,7 @@ enum layer_names{
 #define HOME_J LCTL_T(KC_J)
 #define HOME_L LALT_T(KC_L)
 #define HOME_SCLN LGUI_T(KC_SCLN)
-#define LSFT_ENT LSFT_T(KC_ENT)
+#define LSFT_ENT RSFT_T(KC_ENT)
 #define LSFT_SPC LSFT_T(KC_SPC)
 
 /*
@@ -60,6 +60,20 @@ enum layer_names{
 
 
 #ifdef TAP_DANCE_ENABLE
+
+typedef struct{
+    uint16_t tap;
+    uint16_t hold;
+    uint16_t held;
+} tap_dance_tap_hold_t;
+
+#define ACTION_TAP_DANCE_TAP_HOLD(tap, hold) \
+    { .fn = {NULL, tap_dance_tap_hold_finished, tap_dance_tap_hold_reset}, .user_data = (void *)&((tap_dance_tap_hold_t){tap, hold, 0}), }
+
+
+#define ACTION_TAP_DANCE_TAP_HOLD_LAYER(tap, hold) \
+    { .fn = {NULL, tap_dance_tap_hold_finished, tap_dance_tap_hold_reset}, .user_data = (void *)&((tap_dance_tap_hold_t){tap, hold, 0}), }
+
         enum {
                 TD_LEFT_HOME = 0,
                 TD_DOWN_PGDN,
@@ -67,7 +81,7 @@ enum layer_names{
                 TD_RGHT_END,
                 TD_ESC_CAPS,
                 TD_BSLS_GRV,
-                TD_PIPE_TILD
+                TD_PIPE_TILD,
         };
 
         #define ESC_CAP TD(TD_ESC_CAPS)

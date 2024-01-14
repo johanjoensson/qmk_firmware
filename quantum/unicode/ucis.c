@@ -54,7 +54,7 @@ bool ucis_remove_last(void) {
 }
 
 static bool match_mnemonic(char *mnemonic) {
-    for (uint8_t i = 0; input[i]; i++) {
+    for (uint8_t i = 0; input[i] && i < count; i++) {
         if (i > count || input[i] != mnemonic[i]) {
             return false;
         }
@@ -72,14 +72,15 @@ void ucis_finish(void) {
         }
     }
 
-    if (found) {
-        for (uint8_t j = 0; j <= count; j++) {
+    for (uint8_t j = 0; j <= count; j++) {
             tap_code(KC_BACKSPACE);
-        }
+    }
+    if (found) {
         register_ucis(i);
     }
 
     active = false;
+    memset(input, 0, sizeof(input));
 }
 
 void ucis_cancel(void) {

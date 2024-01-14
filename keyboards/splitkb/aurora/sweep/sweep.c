@@ -15,6 +15,8 @@
  */
 
 #include "quantum.h"
+#include <stdlib.h>
+#include <time.h>
 
 // The first four layers gets a name for readability, which is then used in the OLED below.
 enum layers {
@@ -29,6 +31,7 @@ enum layers {
 // and has been copied directly from `crkbd/soundmonster/keymap.c`
 
 oled_rotation_t oled_init_kb(oled_rotation_t rotation) {
+    srand(time(NULL));
     return OLED_ROTATION_270;
 }
 

@@ -10,6 +10,7 @@ enum combos {
   JK_ENT,
   IO_ARIN,
   KL_ADIA,
+  LSCLN_ODIA,
   COMMDOT_ODIA,
 };
 
@@ -20,6 +21,7 @@ const uint16_t PROGMEM ui_combo[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM jk_combo[] = {LCTL_T(KC_J), KC_K, COMBO_END};
 const uint16_t PROGMEM io_combo[] = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM kl_combo[] = {KC_K, LALT_T(KC_L), COMBO_END};
+const uint16_t PROGMEM lscln_combo[] = {LALT_T(KC_L), LGUI_T(KC_SCLN) , COMBO_END};
 const uint16_t PROGMEM commdot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 
 combo_t key_combos[] = {
@@ -36,5 +38,6 @@ combo_t key_combos[] = {
   [JK_ENT] = COMBO(jk_combo, KC_ENT),
   [IO_ARIN] = COMBO(io_combo, CC_ARIN),
   [KL_ADIA] = COMBO(kl_combo, CC_ADIA),
+  [LSCLN_ODIA] = COMBO(lscln_combo, CC_ODIA),
   [COMMDOT_ODIA] = COMBO(commdot_combo, CC_ODIA),
 };

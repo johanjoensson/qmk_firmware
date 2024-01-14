@@ -7,13 +7,14 @@ uint8_t mod_state;
 bool key_pressed = false;
 uint16_t SH_LEAD_TIMER = 0;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+        tap_dance_action_t *action;
         if (record->event.pressed){
                 key_pressed = true;
         }
         mod_state = get_mods();
         switch (keycode) {
-                case CC_ARIN:
                 // Å
+                case CC_ARIN:
                         if (record->event.pressed) {
                                 if (mod_state & MOD_MASK_SHIFT) {
                                         register_unicode(0x00C5);
@@ -23,8 +24,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                                 return false;
                         }
                         break;
-                case CC_ADIA:
                 // Ä
+                case CC_ADIA:
                         if (record->event.pressed) {
                                 if (mod_state & MOD_MASK_SHIFT) {
                                         register_unicode(0x00C4);
@@ -34,8 +35,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                                 return false;
                         }
                         break;
-                case CC_ODIA:
                 // Ö
+                case CC_ODIA:
                         if (record->event.pressed) {
                                 if (mod_state & MOD_MASK_SHIFT) {
                                         register_unicode(0x00D6);
@@ -45,8 +46,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                                 return false;
                         }
                         break;
-                case CC_ALPH:
                 // α
+                case CC_ALPH:
                         if (record->event.pressed) {
                                 if (mod_state & MOD_MASK_SHIFT) {
                                         register_unicode(0x0391);
@@ -56,8 +57,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                                 return false;
                         }
                         break;
-                case CC_BETA:
                 // β
+                case CC_BETA:
                         if (record->event.pressed) {
                                 if (mod_state & MOD_MASK_SHIFT) {
                                         register_unicode(0x0392);
@@ -67,8 +68,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                                 return false;
                         }
                         break;
-                case CC_GAMM:
                 // γ
+                case CC_GAMM:
                         if (record->event.pressed) {
                                 if (mod_state & MOD_MASK_SHIFT) {
                                         register_unicode(0x0393);
@@ -78,8 +79,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                                 return false;
                         }
                         break;
-                case CC_DELT:
                 // δ
+                case CC_DELT:
                         if (record->event.pressed) {
                                 if (mod_state & MOD_MASK_SHIFT) {
                                         register_unicode(0x0394);
@@ -89,8 +90,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                                 return false;
                         }
                         break;
+                // σ
                 case CC_SIGM:
-                // 
                         if (record->event.pressed) {
                                 if (mod_state & MOD_MASK_SHIFT) {
                                         register_unicode(0x03A3);
@@ -100,8 +101,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                                 return false;
                         }
                         break;
-                case CC_RHO:
                 // ρ
+                case CC_RHO:
                         if (record->event.pressed) {
                                 if (mod_state & MOD_MASK_SHIFT) {
                                         register_unicode(0x03A1);
@@ -111,8 +112,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                                 return false;
                         }
                         break;
-                case CC_PI:
                 // π
+                case CC_PI:
                         if (record->event.pressed) {
                                 if (mod_state & MOD_MASK_SHIFT) {
                                         register_unicode(0x03A0);
@@ -122,8 +123,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                                 return false;
                         }
                         break;
-                case CC_SNEK:
                 // 🐍
+                case CC_SNEK:
                         if (record->event.pressed) {
                                 if (mod_state & MOD_MASK_SHIFT) {
                                         register_unicode(0x1F40D);
@@ -133,8 +134,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                                 return false;
                         }
                         break;
-                case KC_BSPC:
                 // Left Shift + Backspace gives Delete
+                case KC_BSPC:
                         static bool delkey_registered;
                         if (record->event.pressed) {
                                 if (mod_state & MOD_MASK_SHIFT) {
@@ -152,6 +153,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                                 }
                         }
                         break;
+                /* Custom keycode for setting both CONTROL and SHIFT */
                 case CC_CLSH:
                         if (record->event.pressed) {
                                 add_mods(MOD_MASK_SHIFT | MOD_MASK_CTRL);
@@ -159,6 +161,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                                 del_mods(MOD_MASK_SHIFT | MOD_MASK_CTRL);
                         }
                         break;
+                /* Custom keycode for emulating mod tap for QK_LEAD and SHIFT */
                 case CC_SHLD:
                         if (record->event.pressed) {
                                 register_code(KC_LSFT);
@@ -174,17 +177,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                                 }
                         }
                         break;
+                // End UCIS input
+                // ESC, ENT, SPC, ESC can all be used to end UCIS input and thus should turn off the _UCIS layer
                 case KC_ENT:
                 case KC_SPC:
                 case KC_ESC:
-                // End UCIS input
-                // BSPC, ENT, SPC, ESC can all be used to end UCIS input and thus should turn off the _UCIS layer
                         if (record->event.pressed) {
                                 if (get_highest_layer(layer_state) == _UCIS){
                                         layer_off(_UCIS);
                                 }
                                 break;
                         }
+                /*
+                 * special tap-hold tapdances
+                 */
+                case TD_BSLS:  // list all tap dance keycodes with tap-hold configurations
+                case TD_PIPE:  // list all tap dance keycodes with tap-hold configurations
+                        action = &tap_dance_actions[TD_INDEX(keycode)];
+                        if (!record->event.pressed && action->state.count && !action->state.finished) {
+                                tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
+                                tap_code16(tap_hold->tap);
+                        }
+                        break;
                 default:
                         break;
         }

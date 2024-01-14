@@ -14,29 +14,29 @@ void keyboard_pre_init_user(void) {
 }
 
 const rgblight_segment_t PROGMEM capslock_indicator[] = RGBLIGHT_LAYER_SEGMENTS(
-    {22, 1, HSV_RED},       // Light 1 LED, starting with LED 22
-    {44, 1, HSV_RED}       // Light 1 LED, starting with LED 45
+    {RGB_MATRIX_LED_COUNT/2 - 1, 1, HSV_RED},       // Light 1 LED, starting with LED 22
+    {RGB_MATRIX_LED_COUNT - 2, 1, HSV_RED}       // Light 1 LED, starting with LED 45
 );
 // Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
 const rgblight_segment_t PROGMEM base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 6, HSV_BLACK},
-    {23, 6, HSV_BLACK}
+    {RGB_MATRIX_LED_COUNT/2, 6, HSV_BLACK}
 );
 const rgblight_segment_t PROGMEM nav_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 6, HSV_GREEN},
-    {23, 6, HSV_GREEN}
+    {RGB_MATRIX_LED_COUNT/2, 6, HSV_GREEN}
 );
 const rgblight_segment_t PROGMEM numpad_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 6, HSV_RED},
-    {23, 6, HSV_BLACK}
+    {RGB_MATRIX_LED_COUNT/2, 6, HSV_BLACK}
 );
 const rgblight_segment_t PROGMEM symbols_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 6, HSV_BLACK},
-    {23, 6, HSV_RED}
+    {RGB_MATRIX_LED_COUNT/2, 6, HSV_RED}
 );
 const rgblight_segment_t PROGMEM ucis_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 6, HSV_TURQUOISE},
-    {23, 6, HSV_TURQUOISE}
+    {RGB_MATRIX_LED_COUNT/2, 6, HSV_TURQUOISE}
 );
 
 const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(
