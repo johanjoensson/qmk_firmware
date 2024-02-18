@@ -49,13 +49,14 @@ const rgblight_segment_t PROGMEM mouse_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 
 const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(
                 [_BASE] = base_layer,
+                [_COLEMAK_DH] = base_layer,
                 [_UCIS] = ucis_layer,
                 [_SYMBOLS] = symbols_layer,
                 [_NUMPAD] = numpad_layer,
                 [_NAV] = nav_layer,
                 [_FUNCTION] = function_layer,
-                [_MOUSE] = mouse_layer
-                /* [7] = capslock_indicator */
+                [_MOUSE] = mouse_layer,
+                [31] = capslock_indicator
 );
 
 void keyboard_post_init_user(void) {
@@ -68,6 +69,6 @@ void keyboard_post_init_user(void) {
 }
 
 bool led_update_user(led_t led_state) {
-    /* rgblight_set_layer_state(7, led_state.caps_lock); */
+    rgblight_set_layer_state(7, led_state.caps_lock);
     return true;
 }
