@@ -1,7 +1,7 @@
 CONVERT_TO = liatris
 LTO_ENABLE = yes
 
-OLED_ENABLE = yes
+OLED_ENABLE = no
 ENCODER_ENABLE = no       # Enables the use of one or more encoders
 LED_MATRIX_ENABLE = no
 RGB_MATRIX_ENABLE = no
@@ -22,7 +22,7 @@ CAPS_WORD_ENABLE = yes
 
 CONSOLE_ENABLE = no
 COMMAND_ENABLE = no
-MOUSEKEY_ENABLE = no
+MOUSEKEY_ENABLE = yes
 EXTRAKEY_ENABLE = no
 SPACE_CADET_ENABLE = no
 GRAVE_ESC_ENABLE = no

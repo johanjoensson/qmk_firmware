@@ -17,7 +17,7 @@ CONVERT_TO = liatris
 LTO_ENABLE = yes
 
 # NOTE: These are already enabled by default at the revision level
-ENCODER_ENABLE = no
+ENCODER_ENABLE = yes
 OLED_ENABLE = yes
 
 # RGB Matrix is enabled at the revision level,
@@ -36,7 +36,7 @@ COMBO_ENABLE = yes
 UNICODE_COMMON = yes
 UCIS_ENABLE = yes
 
-CAPS_WORD_ENABLE = no
+CAPS_WORD_ENABLE = yes
 
 CONSOLE_ENABLE = no
 COMMAND_ENABLE = no

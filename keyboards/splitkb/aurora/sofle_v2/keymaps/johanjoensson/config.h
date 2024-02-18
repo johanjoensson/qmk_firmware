@@ -1,4 +1,4 @@
-/* Copyright 2023 splitkb.com <support@splitkb.com>
+/* Copyright 2022 splitkb.com <support@splitkb.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
 
 #pragma once
 
-/* #ifdef OLED_ENABLE */
-/* #   define OLED_FONT_H "keyboards/splitkb/aurora/sofle_v2/glcdfont.c" */
-/* #endif */
+#define LED_CAPS_LOCK_PIN 24
+#define LED_PIN_ON_STATE 0
+#ifdef OLED_ENABLE
+#       define RIGHT_ANIMATION
+#endif

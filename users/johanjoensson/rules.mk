@@ -31,3 +31,9 @@ ifeq ($(strip $(UNICODE_MAP_ENABLE)), yes)
   # Include my fancy rgb functions source here
   SRC += unicode_map.c
 endif
+ifeq ($(strip $(CAPS_WORD_ENABLE)), yes)
+  # Include my fancy rgb functions source here
+  SRC += caps_word.c
+else
+  SRC += features/casemodes.c
+endif

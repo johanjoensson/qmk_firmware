@@ -22,30 +22,40 @@ const rgblight_segment_t PROGMEM base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 6, HSV_BLACK},
     {RGB_MATRIX_LED_COUNT/2, 6, HSV_BLACK}
 );
-const rgblight_segment_t PROGMEM nav_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 6, HSV_GREEN},
-    {RGB_MATRIX_LED_COUNT/2, 6, HSV_GREEN}
-);
-const rgblight_segment_t PROGMEM numpad_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 6, HSV_RED},
-    {RGB_MATRIX_LED_COUNT/2, 6, HSV_BLACK}
+const rgblight_segment_t PROGMEM ucis_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 6, HSV_TURQUOISE},
+    {RGB_MATRIX_LED_COUNT/2, 6, HSV_TURQUOISE}
 );
 const rgblight_segment_t PROGMEM symbols_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 6, HSV_BLACK},
     {RGB_MATRIX_LED_COUNT/2, 6, HSV_RED}
 );
-const rgblight_segment_t PROGMEM ucis_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 6, HSV_TURQUOISE},
-    {RGB_MATRIX_LED_COUNT/2, 6, HSV_TURQUOISE}
+const rgblight_segment_t PROGMEM numpad_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 6, HSV_RED},
+    {RGB_MATRIX_LED_COUNT/2, 6, HSV_BLACK}
+);
+const rgblight_segment_t PROGMEM nav_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 6, HSV_GREEN},
+    {RGB_MATRIX_LED_COUNT/2, 6, HSV_GREEN}
+);
+const rgblight_segment_t PROGMEM function_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 6, HSV_PURPLE},
+    {RGB_MATRIX_LED_COUNT/2, 6, HSV_PURPLE}
+);
+const rgblight_segment_t PROGMEM mouse_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 6, HSV_GOLDENROD},
+    {RGB_MATRIX_LED_COUNT/2, 6, HSV_GOLDENROD}
 );
 
 const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(
                 [_BASE] = base_layer,
-                [_NAV] = nav_layer,
                 [_UCIS] = ucis_layer,
                 [_SYMBOLS] = symbols_layer,
                 [_NUMPAD] = numpad_layer,
-                [7] = capslock_indicator
+                [_NAV] = nav_layer,
+                [_FUNCTION] = function_layer,
+                [_MOUSE] = mouse_layer
+                /* [7] = capslock_indicator */
 );
 
 void keyboard_post_init_user(void) {
@@ -58,6 +68,6 @@ void keyboard_post_init_user(void) {
 }
 
 bool led_update_user(led_t led_state) {
-    rgblight_set_layer_state(7, led_state.caps_lock);
+    /* rgblight_set_layer_state(7, led_state.caps_lock); */
     return true;
 }

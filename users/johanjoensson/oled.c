@@ -247,14 +247,20 @@ void render_layer_state(void) {
 #endif
     if(layer_state_is(_BASE)) {
         oled_write_P(PSTR(" BASE"), false);
-    } else if(layer_state_is(_NAV)) {
-        oled_write_P(PSTR(" NAV "), false);
+    } else if(layer_state_is(_COLEMAK_DH)) {
+        oled_write_P(PSTR("CM-DH"), false);
     } else if(layer_state_is(_UCIS)) {
         oled_write_P(PSTR(" UCIS"), false);
     } else if(layer_state_is(_SYMBOLS)) {
         oled_write_P(PSTR(" SYM "), false);
     } else if(layer_state_is(_NUMPAD)) {
         oled_write_P(PSTR(" NUM "), false);
+    } else if(layer_state_is(_NAV)) {
+        oled_write_P(PSTR(" NAV "), false);
+    } else if(layer_state_is(_FUNCTION)) {
+        oled_write_P(PSTR(" FUN "), false);
+    } else if(layer_state_is(_MOUSE)) {
+        oled_write_P(PSTR("MOUSE"), false);
     } else {
         oled_write_P(PSTR("OTHER"), false);
     }

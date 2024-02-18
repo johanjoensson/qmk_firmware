@@ -1,5 +1,9 @@
 #include QMK_KEYBOARD_H
 #include "johanjoensson.h"
+#ifndef CAPS_WORD_ENABLE
+#include "features/casemodes.h"
+#endif
+
 /*
  * Custom keycode handling
  */
@@ -7,7 +11,11 @@ uint8_t mod_state;
 bool key_pressed = false;
 uint16_t SH_LEAD_TIMER = 0;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-        tap_dance_action_t *action;
+#ifndef CAPS_WORD_ENABLE
+        if (!process_case_modes(keycode, record)) {
+                return false;
+        }
+#endif
         if (record->event.pressed){
                 key_pressed = true;
         }
@@ -180,24 +188,40 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // End UCIS input
                 // ESC, ENT, SPC, ESC can all be used to end UCIS input and thus should turn off the _UCIS layer
                 case KC_ENT:
-                case KC_SPC:
                 case KC_ESC:
-                        if (record->event.pressed) {
-                                if (get_highest_layer(layer_state) == _UCIS){
-                                        layer_off(_UCIS);
+                        if (record->event.pressed && get_highest_layer(layer_state) == _UCIS){
+                                layer_off(_UCIS);
+                        }
+                        break;
+
+                case KC_SPC:
+                        if (record->event.pressed && get_highest_layer(layer_state) == _UCIS){
+                                layer_off(_UCIS);
+                        }
+#ifdef CAPS_WORD_ENABLE
+                        if (is_caps_word_on()){
+                                if (record->event.pressed){
+                                        unregister_code16(KC_SPC);
+                                        register_code16(KC_UNDS);
+                                        /* return false; */
+                                }else{
+                                        unregister_code16(KC_UNDS);
+                                        /* return false; */
                                 }
-                                break;
                         }
-                /*
-                 * special tap-hold tapdances
-                 */
-                case TD_BSLS:  // list all tap dance keycodes with tap-hold configurations
-                case TD_PIPE:  // list all tap dance keycodes with tap-hold configurations
-                        action = &tap_dance_actions[TD_INDEX(keycode)];
-                        if (!record->event.pressed && action->state.count && !action->state.finished) {
-                                tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
-                                tap_code16(tap_hold->tap);
+#else
+                case CAPWORD:
+                        if (record->event.pressed) {
+                                enable_caps_word();
+                                enable_xcase_with(KC_UNDS);
                         }
+                        return false;
+                case SNEKCAS:
+                        if (record->event.pressed) {
+                                enable_xcase_with(KC_UNDS);
+                        }
+                        return false;
+#endif
                         break;
                 default:
                         break;
@@ -225,11 +249,12 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef RGBLIGHT_ENABLE
+    rgblight_set_layer_state(_UCIS, layer_state_cmp(state, _UCIS));
+    rgblight_set_layer_state(_SYMBOLS, layer_state_cmp(state, _SYMBOLS));
     rgblight_set_layer_state(_NUMPAD, layer_state_cmp(state, _NUMPAD));
     rgblight_set_layer_state(_NAV, layer_state_cmp(state, _NAV));
-    rgblight_set_layer_state(_SYMBOLS, layer_state_cmp(state, _SYMBOLS));
     rgblight_set_layer_state(_FUNCTION, layer_state_cmp(state, _FUNCTION));
-    rgblight_set_layer_state(_UCIS, layer_state_cmp(state, _UCIS));
+    rgblight_set_layer_state(_MOUSE, layer_state_cmp(state, _MOUSE));
 #endif
     return state;
 }

@@ -15,16 +15,19 @@ enum keycodes {
         CC_SNEK,
         CC_CLSH,
         CC_SHLD,
+        CAPWORD,
+        SNEKCAS,
 };
 
 enum layer_names{
         _BASE = 0,
+        _COLEMAK_DH,
         _UCIS,
         _SYMBOLS,
         _NUMPAD,
         _NAV,
         _FUNCTION,
-        _UNUSED_2,
+        _MOUSE,
         _UNUSED_3,
         _UNUSED_4,
         _UNUSED_5,
@@ -43,12 +46,17 @@ enum layer_names{
 /*
  * Home-row mods
  */
-#define HOME_A LGUI_T(KC_A)
-#define HOME_S LALT_T(KC_S)
-#define HOME_F LCTL_T(KC_F)
-#define HOME_J LCTL_T(KC_J)
-#define HOME_L LALT_T(KC_L)
-#define HOME_SCLN LGUI_T(KC_SCLN)
+#define HOME_A LGUI_T(KC_A) /*QWERTY and COLEMAK-DH*/
+#define HOME_S LALT_T(KC_S) /*QWERTY*/
+#define HOME_R LALT_T(KC_R) /*COLEMAK-DH*/
+#define HOME_F LCTL_T(KC_F) /*QWERTY*/
+#define HOME_T LCTL_T(KC_T) /*COLEMAK-DH*/
+#define HOME_J LCTL_T(KC_J) /*QWERTY*/
+#define HOME_N LCTL_T(KC_N) /*COLEMAK-DH*/
+#define HOME_L LALT_T(KC_L) /*QWERTY*/
+#define HOME_I LALT_T(KC_I) /*COLEMAK-DH*/
+#define HOME_SCLN LGUI_T(KC_SCLN) /*QWERY*/
+#define HOME_O LGUI_T(KC_O) /*COLEMAK-DH*/
 #define LSFT_ENT RSFT_T(KC_ENT)
 #define LSFT_SPC LSFT_T(KC_SPC)
 
@@ -60,19 +68,55 @@ enum layer_names{
 
 
 #ifdef TAP_DANCE_ENABLE
+        typedef enum {
+           /*
+            * All different states a tap dance can be in,
+            * and UNKNOWN
+            */
+            TD_NONE,
+            TD_UNKNOWN,
+            TD_SINGLE_TAP,
+            TD_SINGLE_HOLD,
+            TD_DOUBLE_TAP,
+            TD_DOUBLE_HOLD,
+            TD_DOUBLE_SINGLE_TAP, // Send two single taps
+            TD_TRIPLE_TAP,
+            TD_TRIPLE_HOLD
+        } td_state_t;
 
-typedef struct{
-    uint16_t tap;
-    uint16_t hold;
-    uint16_t held;
-} tap_dance_tap_hold_t;
+        typedef struct {
+            /*
+             * Keep track of the tap dance state
+             */
+            bool is_press_action;
+            td_state_t state;
+        } td_tap_t;
 
-#define ACTION_TAP_DANCE_TAP_HOLD(tap, hold) \
-    { .fn = {NULL, tap_dance_tap_hold_finished, tap_dance_tap_hold_reset}, .user_data = (void *)&((tap_dance_tap_hold_t){tap, hold, 0}), }
+        typedef struct{
+            /*
+             * User data, store all tap/hold keycodes as well as the dance state
+             */
+            uint16_t single_tap;
+            uint16_t single_hold;
+            uint16_t double_tap;
+            uint16_t double_hold;
+            uint16_t triple_tap;
+            uint16_t triple_hold;
+            td_tap_t* tap_state;
+        } quad_tap_data_t;
 
-
-#define ACTION_TAP_DANCE_TAP_HOLD_LAYER(tap, hold) \
-    { .fn = {NULL, tap_dance_tap_hold_finished, tap_dance_tap_hold_reset}, .user_data = (void *)&((tap_dance_tap_hold_t){tap, hold, 0}), }
+        typedef struct{
+            /*
+             * User data, store all tap/hold layers as well as the dance state
+             */
+            uint8_t single_tap;
+            uint8_t single_hold;
+            uint8_t double_tap;
+            uint8_t double_hold;
+            uint8_t triple_tap;
+            uint8_t triple_hold;
+            td_tap_t* tap_state;
+        } quad_tap_layer_data_t;
 
         enum {
                 TD_LEFT_HOME = 0,
@@ -82,6 +126,9 @@ typedef struct{
                 TD_ESC_CAPS,
                 TD_BSLS_GRV,
                 TD_PIPE_TILD,
+                TD_SYM,
+                TD_NUM,
+                TD_CAPWORD,
         };
 
         #define ESC_CAP TD(TD_ESC_CAPS)
