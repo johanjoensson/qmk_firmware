@@ -9,6 +9,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_LSFT , KC_Z   , KC_X    , KC_C   , KC_V   , KC_B  ,                                        KC_N    , KC_M   , KC_COMM, KC_DOT  , KC_SLSH  , KC_DEL ,
                                            CC_CLSH, LSFT_SPC, TD(_NUMPAD),           TD(_SYMBOLS), LSFT_ENT, CC_CLSH
     ),
+    [_COLEMAK_DH] = LAYOUT_split_3x6_3(
+     KC_TAB  , KC_Q   , KC_W   , KC_F   , KC_P   , KC_B,                                        KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, KC_BSPC,
+     ESC_CAP,  HOME_A , HOME_R , KC_S   , HOME_T , KC_G,                                        KC_M   , HOME_N , KC_E   , HOME_I , HOME_O,  KC_QUOT,
+     KC_LSFT , KC_Z   , KC_X   , KC_C   , KC_D   , KC_V,                                        KC_K   , KC_H   , KC_COMM, KC_DOT , KC_SLSH, KC_DEL ,
+                                           CC_CLSH, LSFT_SPC, TD(_NUMPAD),           TD(_SYMBOLS), LSFT_ENT, CC_CLSH
+    ),
 
     [_UCIS] = LAYOUT_split_3x6_3(
      XXXXXXX, KC_Q   , KC_W    , KC_E   , KC_R   , KC_T   ,                                         KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , XXXXXXX,
@@ -25,13 +31,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NUMPAD] = LAYOUT_split_3x6_3(
-      XXXXXXX, XXXXXXX, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD ,                                     KC_ASTR,      KC_7   , KC_8   , KC_9   , KC_MINS, XXXXXXX,
-      XXXXXXX, RGB_TOG, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,                                     KC_SLSH,      KC_4   , KC_5   , KC_6   , KC_PLUS, XXXXXXX,
-      XXXXXXX, XXXXXXX, XXXXXXX, DT_UP  , DT_DOWN, DT_PRNT ,                                     XXXXXXX,      KC_1   , KC_2   , KC_3   , XXXXXXX, XXXXXXX,
+      XXXXXXX, DF(_COLEMAK_DH), RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD ,                                     KC_ASTR,      KC_7   , KC_8   , KC_9   , KC_MINS, XXXXXXX,
+      XXXXXXX, RGB_TOG,         RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,                                     KC_SLSH,      KC_4   , KC_5   , KC_6   , KC_PLUS, XXXXXXX,
+      XXXXXXX, DF(_BASE),       XXXXXXX, DT_UP  , DT_DOWN, DT_PRNT ,                                     XXXXXXX,      KC_1   , KC_2   , KC_3   , XXXXXXX, XXXXXXX,
                                           XXXXXXX, XXXXXXX , TG(_NUMPAD),               NAV    , RSFT_T(KC_0), XXXXXXX
     ),
     [_NAV] = LAYOUT_split_3x6_3(
-      XXXXXXX, KC_KB_VOLUME_UP  , KC_F7  , KC_F8  , KC_F9  , KC_F10 ,                                     CW_TOGG, KC_COPY, KC_PSTE, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, KC_KB_VOLUME_UP  , KC_F7  , KC_F8  , KC_F9  , KC_F10 ,                              TD(TD_CAPWORD), KC_COPY, KC_PSTE, XXXXXXX, XXXXXXX, XXXXXXX,
       XXXXXXX, KC_KB_VOLUME_DOWN, KC_F4  , KC_F5  , KC_F6  , KC_F11 ,                                     TD_LEFT, TD_DOWN, TD_UP  , TD_RGHT, KC_QUOT, XXXXXXX,
       XXXXXXX, KC_KB_MUTE       , KC_F1  , KC_F2  , KC_F3  , KC_F12 ,                                     KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, XXXXXXX, XXXXXXX,
                                                     XXXXXXX, XXXXXXX, TG(_NAV),                 TG(_NAV), XXXXXXX, XXXXXXX
