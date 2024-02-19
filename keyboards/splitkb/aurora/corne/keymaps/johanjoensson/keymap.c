@@ -7,13 +7,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_TAB  , KC_Q   , KC_W    , KC_E   , KC_R   , KC_T  ,                                        KC_Y    , KC_U   , KC_I   , KC_O    , KC_P     , KC_BSPC,
      ESC_CAP, HOME_A  , HOME_S  , KC_D   , HOME_F , KC_G  ,                                        KC_H    , HOME_J , KC_K   , HOME_L  , HOME_SCLN, KC_QUOT,
      KC_LSFT , KC_Z   , KC_X    , KC_C   , KC_V   , KC_B  ,                                        KC_N    , KC_M   , KC_COMM, KC_DOT  , KC_SLSH  , KC_DEL ,
-                                           CC_CLSH, LSFT_SPC, TD(_NUMPAD),           TD(_SYMBOLS), LSFT_ENT, CC_CLSH
+                                           CC_CLSH, LSFT_SPC, TD(TD_NUM),           TD(TD_SYM), LSFT_ENT, CC_CLSH
     ),
     [_COLEMAK_DH] = LAYOUT_split_3x6_3(
      KC_TAB  , KC_Q   , KC_W   , KC_F   , KC_P   , KC_B,                                        KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, KC_BSPC,
      ESC_CAP,  HOME_A , HOME_R , KC_S   , HOME_T , KC_G,                                        KC_M   , HOME_N , KC_E   , HOME_I , HOME_O,  KC_QUOT,
      KC_LSFT , KC_Z   , KC_X   , KC_C   , KC_D   , KC_V,                                        KC_K   , KC_H   , KC_COMM, KC_DOT , KC_SLSH, KC_DEL ,
-                                           CC_CLSH, LSFT_SPC, TD(_NUMPAD),           TD(_SYMBOLS), LSFT_ENT, CC_CLSH
+                                           CC_CLSH, LSFT_SPC, TD(TD_NUM),           TD(TD_SYM), LSFT_ENT, CC_CLSH
     ),
 
     [_UCIS] = LAYOUT_split_3x6_3(
