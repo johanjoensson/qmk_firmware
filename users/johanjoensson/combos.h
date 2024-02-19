@@ -27,7 +27,7 @@ const uint16_t PROGMEM io_combo[] = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM kl_combo[] = {KC_K, HOME_L, COMBO_END};
 const uint16_t PROGMEM lscln_combo[] = {HOME_L, HOME_SCLN , COMBO_END};
 
-const uint16_t PROGMEM wf_cdf_combo[] = {KC_W, KC_E, COMBO_END};
+const uint16_t PROGMEM wf_cdf_combo[] = {KC_W, KC_F, COMBO_END};
 const uint16_t PROGMEM rs_cdf_combo[] = {HOME_R, KC_S, COMBO_END};
 const uint16_t PROGMEM lu_cdf_combo[] = {KC_L, KC_U, COMBO_END};
 const uint16_t PROGMEM ne_cdf_combo[] = {HOME_N, KC_E, COMBO_END};
