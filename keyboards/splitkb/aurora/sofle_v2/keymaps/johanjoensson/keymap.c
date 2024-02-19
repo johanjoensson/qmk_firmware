@@ -10,7 +10,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           KC_LGUI, KC_LALT, CC_CLSH, LSFT_SPC, TD(TD_NUM),     TD(TD_SYM), LSFT_ENT, CC_CLSH, KC_RALT, KC_RGUI
 
     ),
-    [_COLEMK_DH] = LAYOUT(
+    [_COLEMAK_DH] = LAYOUT(
         KC_GRV,  KC_1   , KC_2   , KC_3   , KC_4   , KC_5,                                 KC_6    , KC_7   , KC_8   , KC_9  , KC_0     , KC_GRV ,
         KC_TAB , KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   ,                              KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN,   KC_BSPC,
         ESC_CAP, HOME_A , HOME_R , KC_S   , HOME_T , KC_G  ,                               KC_M   , HOME_N , KC_E   , HOME_I , HOME_O,    KC_QUOT,
